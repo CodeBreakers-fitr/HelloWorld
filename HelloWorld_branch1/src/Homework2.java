@@ -30,9 +30,9 @@ public class Homework2 {
         while (true){
             System.out.println("Please enter something ");
             userInput = scanner.nextLine();
-        System.out.println("You've entered:" + userInput);
-            if (userInput.equalsIgnoreCase("Exit"))
-                break;
+            System.out.println("You've entered:" + userInput);
+            if (userInput.equalsIgnoreCase("Exit")){
+                break;}
         }
 
         //task3
@@ -52,17 +52,20 @@ public class Homework2 {
 
         //task 4
         String[] channels = {"Discovery", "Belarus 1", "Sport", "National Geographic"};
-        System.out.println("You got to the control panel\nPlease enter the channel number: \n 0 - Exit, 1 - Discovery," +
+        System.out.println("\nYou got to the control panel\nPlease enter the channel number: \n 0 - Exit, 1 - Discovery," +
                 " 2 - Belarus 1, 3 - Sport, 4 - National Geographic");
-        int numberOfChannels = scanner.nextInt();
-       String channel =  switch (numberOfChannels) {
-            case 0 -> "You have closed the program";
-            case 1 -> "You switched to " + channels[0];
-           case 2 -> "You switched to " + channels[1] ;
-           case 3 -> "You switched to " + channels[2];
-           case 4 -> "You switched to " + channels[3];
-           default -> "You entered the wrong channel, select something from 0 to 4";
-        };
-       System.out.println(channel);
+        while (true) {
+            int numberOfChannels = scanner.nextInt();
+            if (numberOfChannels == 0) {
+                break;
+            }
+            else if (numberOfChannels < 4) {
+                System.out.println("\nYou have chosen a channel:" + channels[numberOfChannels - 1]);
+            }
+            else System.out.println("You entered the wrong channel, select something from 0 to 4");
+        }
+        System.out.println("Exiting the program.");
     }
+
 }
+
