@@ -1,17 +1,38 @@
 import oop.Jaba;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
+        //чтение файла
+        File file = new File("D:\\AQA\\pypsik\\HelloWorld1\\ILoveJaba.txt");
+        if (file.length() == 0){ System.out.println("There are no objects in your file. " +
+                "therefore, we will create a jaba for the first time");}
+        else {
+            System.out.println("\nDo you want to see information about a previously created jaba?");
+            String UserAnswer = scanner.nextLine();
+            if (UserAnswer.equalsIgnoreCase("yes")) {
+                try {
+                    WorkWithFile.readFromFile();
+                } catch (FileNotFoundException e) {
+                    System.out.println("\nSorry, no such file");
+                }
+
+            }
+        }
+
+        //консольный ввод
         System.out.println("Now we're going to create a jaba, it's going to be a long process," +
                 " so get ready\nThe code does not know how to process incorrect data, so if you enter " +
                 "something wrong, everything will break\n");
-
-        System.out.println("Enter her name:");                   //ввод имени
-        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter her name:");                  //ввод имени
         String userInputName = scanner.nextLine();
 
         System.out.println("\nNice name:) \nUse \",\" if you want to enter a floating point number. " +
@@ -75,15 +96,39 @@ public class Main {
         Jaba userInputJaba = new Jaba(userInputName, userInputPrice, userInputCountries, userInputIsPoison,
                 userInputTypeOfTerrarium, userInputLength, userInputLifeExpectancy, userInputHasTail,
                 userInputNumberOfEyes, userInputIsHaveAnabiosis, userInputLifestyle, UserInputIsCannibal);
+
+        //сохранение жабы в файл
+        try {
+            FileWriter file2 = new FileWriter("D:\\AQA\\pypsik\\HelloWorld1\\ILoveJaba.txt",
+                    false);
+            file2.write("Name: " + userInputName);
+            file2.write("\nprice: " + userInputPrice);
+            file2.write("\ncountries: " + Arrays.toString(userInputCountries));
+            file2.write("\npoison? : " + userInputIsPoison);
+            file2.write("\ntype of terrarium: " + userInputTypeOfTerrarium);
+            file2.write("\nlength: " + userInputLength);
+            file2.write("\nlife expectancy: " + userInputLifeExpectancy);
+            file2.write("\nhas a tail?: " + userInputHasTail);
+            file2.write("\nnumber of eyes: " + userInputNumberOfEyes);
+            file2.write("\nhave anabiosis? : " + userInputIsHaveAnabiosis);
+            file2.write("\nlifestyle: " + userInputLifestyle);
+            file2.write("\nis cannibal? : " + UserInputIsCannibal);
+            file2.write("\n======End of information about this object======");
+            System.out.println("\nYour jaba has been successfully saved to a file ILoveJaba.txt!");
+            file2.close();
+        } catch (IOException e) {
+            System.out.println("Sorry, cannot write to file. File error massage: " + e.getMessage());
+        }
+
         System.out.println("\nNow let's see what kind of monster you've created.");
         userInputJaba.getInfo();
+
+        //вывод инфы о созданной жабке
         System.out.println("\n\nYou can see the individual characteristics of your jaba" +
                 " if you want. Enter what you want to see, or enter EXIT if you don't want to" +
                 "\nAvailable options: name, price, listCountriesResidence, isPoison, length, " +
                 "LifeExpectancy, TypeOfTerrarium, hasTail, \nnumberOfEyes, isHaveAnabiosis, " +
                 "lifestyle, isCannibal");
-
-        //вывод инфы о созданной жабке
         while (true) {
             String userEnteredAnswer = scanner.nextLine();
             if (userEnteredAnswer.equalsIgnoreCase("name")) {
@@ -113,16 +158,16 @@ public class Main {
             } else if(userEnteredAnswer.equalsIgnoreCase("Exit")){
                 break;}
         }
-//        cricketToad.calculatePrice(3.55);
-//        cricketToad.setName("Masha");
-//        System.out.println("Your toad's new name is " + cricketToad.getName());
-
-//        System.out.println("Do you want to see a jaba?");
-//        String userEnteredAnswer = scanner.nextLine();
-//        if (userEnteredAnswer.equalsIgnoreCase("yes")) {
-//            Jaba.showJaba();
-//        } else {
-//            System.out.println("I'm upset that you don't want to see the jaba");
-//        }
+////        cricketToad.calculatePrice(3.55);
+////        cricketToad.setName("Masha");
+////        System.out.println("Your toad's new name is " + cricketToad.getName());
+//
+        System.out.println("Do you want to see a jaba?");
+        String userEnteredAnswer = scanner.nextLine();
+        if (userEnteredAnswer.equalsIgnoreCase("yes")) {
+            Jaba.showJaba();
+        } else {
+            System.out.println("I'm upset that you don't want to see the jaba");
+        }
     }
 }

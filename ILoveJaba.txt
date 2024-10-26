@@ -1,0 +1,13 @@
+Name: olya
+price: 9.999999999E7
+countries: [japan, belarus]
+poison? : true
+type of terrarium: basic
+length: 162.0
+life expectancy: 25
+has a tail?: false
+number of eyes: 2
+have anabiosis? : false
+lifestyle: normis
+is cannibal? : true
+======End of information about this object======
